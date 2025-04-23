@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Angelic Kingdom</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 0;
+    }
+
+    header {
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      text-align: center;
+      padding: 120px 20px;
+      color: white;
+    }
+
+    header h1 span {
+      color: #00bcd4;
+    }
+
+    .portfolio {
+      background-color: #181818;
+      padding: 40px 0;
+    }
+
+    .portfolio h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .card {
+      background-color: #242424;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.2s ease, background-color 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      background-color: #82cdc1;
+    }
+
+    .card i {
+      font-size: 2rem;
+      color: #00bcd4;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #79c2d2;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Hola, soy <span>Angel</span></h1>
+      <p>Bienvenido</p>
+    </div>
+  </header>
+
+  <section class="portfolio">
+    <div class="container">
+      <h2>The Angelic Kingdom</h2>
+
+      <a href="Cáncer de piel.html" class="card">
+        <i class="fas fa-hand-peace"></i> <!-- ícono de piel / mano -->
+        <h3>Cáncer de piel</h3>
+        <p>Información</p>
+      </a>
+      
+      <a href="Cáncer de estómago.html" class="card">
+        <h3> Cáncer de estómago</h3>
+        <p>Información</p>
+      </a>
+      
+      
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 LizbethC. Todos los derechos reservados.</p>
+  </footer>
+  <div style="position: fixed; bottom: 20px; left: 20px;">
+    <button onclick="startNarration()">🔊 Reproducir</button>
+    <button onclick="togglePause()">⏸ Pausar / Reanudar</button>
+  </div>
+  
+  <script>
+    const synth = window.speechSynthesis;
+    let utterance;
+    let isPaused = false;
+  
+    function getTextContent() {
+      const tags = document.body.querySelectorAll('h1, h2, h3, p');
+      return Array.from(tags).map(el => el.innerText).join('. ');
+    }
+  
+    function startNarration() {
+      if (synth.speaking) {
+        synth.cancel(); // Detener si ya está hablando
+      }
+      const text = getTextContent();
+      utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-ES'; // Puedes cambiar a 'en-US' o 'es-MX'
+      synth.speak(utterance);
+    }
+  
+    function togglePause() {
+      if (synth.speaking) {
+        if (synth.paused) {
+          synth.resume();
+        } else {
+          synth.pause();
+        }
+      }
+    }
+  </script>
+  
+
+</body>
+</html>

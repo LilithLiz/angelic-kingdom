@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cáncer de Piel</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      padding: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cáncer de Piel</h1>
+  <p>Información,signos de alerta y prevención.</p>
+ 
+  <script>
+    const synth = window.speechSynthesis;
+    let utterance;
+    let isPaused = false;
+  
+    function getTextContent() {
+      const tags = document.body.querySelectorAll('h1, h2, h3, p');
+      return Array.from(tags).map(el => el.innerText).join('. ');
+    }
+  
+    function startNarration() {
+      if (synth.speaking) {
+        synth.cancel(); // Detener si ya está hablando
+      }
+      const text = getTextContent();
+      utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-ES'; // Puedes cambiar a 'en-US' o 'es-MX'
+      synth.speak(utterance);
+    }
+  
+    function togglePause() {
+      if (synth.speaking) {
+        if (synth.paused) {
+          synth.resume();
+        } else {
+          synth.pause();
+        }
+      }
+    }
+  </script>
+    <div id="cancer" class="content">
+      <h1>Información sobre el cáncer</h1>
+      <div class="container">
+          <p>
+              <p>El cáncer de piel se caracteriza por Los tipos principales de cáncer de piel son: carcinoma de células escamosas, carcinoma de células basales y melanoma. El melanoma es mucho menos común que los otros tipos de cáncer, pero es mucho más probable que invada el tejido cercano y se disemine a otras partes del cuerpo.El melanoma causa la mayoría de las muertes por cáncer de piel.
+
+              </p>
+          </p>
+          <img src="data:image/jpeg;base64,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" 
+          alt="400" height="500">
+         
+      </div>
+      <p><h3> La gran mayoría de melanomas suceden en la piel expuesta al sol, por una exposición continuada, por ejemplo, personas que trabajan al aire libre como el campo o por exposiciones intermitentes quemaduras solares en playa, piscina, o cualquier lugar cuando se toma el sol.</h3></p>
+  
+  <table>
+      <caption> </caption>
+  <tr>
+    <td> </td>
+    <th> </th>
+    <th> </th>
+  </tr>
+  <tr>
+    <th> </th>
+    <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2XXs2XDlouIX8eBOdF2QQKgL6KMMTh_0q8A&s" alt="400" height="350"></td>
+    <td> <p><h3>Regla sencilla, el ABCDE, que resume las características de sospecha de una lesión cutánea
+      pigmentada:
+      </h3>
+      • A: Asimetría. La lesión NO es redondeada.
+      • B: Bordes. Los bordes son irregulares.
+      • C: Color. La lesión presenta distintos colores, no homogéneos.
+      • D: Diámetro. El tamaño de la lesión es mayor de 6 mm.
+      • E: Evolución. Cualquiera de las características anteriores ha presentado cambios en el
+      tiempo.
+      </p>
+  </tr>
+  <tr>
+    <th> </th>
+    <td>Regla ABCDE</td>
+    <td> </td>
+  </tr>
+</table>
+<br><br>
+<table>
+  <caption> </caption>
+  <tr>
+    <td> </td>
+    <th> </th>
+    <th> </th>
+  </tr>
+  <br>
+  <tr>
+    <th> </th>
+    <td><img src="https://i.pinimg.com/736x/67/33/2f/67332f36f5cf1cb59224b45d1b6a0e86.jpg" alt="450" height="350"></td>
+    <td> <p><h3>Prevención</h3></p>
+    </p>
+       <p>
+          La mejor prevención es una exposición responsable al sol. Hay que evitar la exposición prolongada sobre todo en las horas centrales del día, y usar cremas con factor protector alto en las zonas expuestas al sol (sobre todo en verano). Esto es especialmente importante en personas con piel clara y en los niños, ya que sabemos que las quemaduras solares en la infancia son uno de los mayores factores de riesgo para que aparezca un melanoma.
+          <p> </p>
+</td>
+  </tr>
+  <tr>
+    <th> </th>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>
+  </table>                                    
+
+ 
+<table>
+  <caption> </caption>
+  <tr>
+    <td> </td>
+    <th> </th>
+    <th> </th>
+  </tr>
+  <tr>
+    <th> </th>
+    <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREV-gDmdOWgmLxFB_5KkySjTCuKgFvUrUQ-w&s" alt="350" height="250"></td>
+    <td>    <p><h3>Subtipos de melanoma</h3></p>
+  </p> <p> •	Melanoma acral: suelen aparecer en zonas como: palmas de manos y pies o debajo de las uñas. Suelen presentarse de una forma más avanzada, afectar más a personas con piel oscura.
+      •	Melanoma de mucosas: son más raros, se pueden presentar en la mucosa nasal, cavidad orofaríngea, aparato genital, aparato urinario, aparato digestivo. Dada su localización y rareza, son difíciles de diagnosticar.
+      •	Melanoma uveal u ocular: son muy raros y afectan a la capa interna del ojo (coroides) en la mayoría de casos, siendo más raro que afecte al iris (la zona que da color a los ojos). Tienen un tratamiento muy específico en fases iniciales que requiere una gran coordinación entre oftalmólogos y oncólogos radioterápicos (en concreto con tratamientos sofisticados con braquiterapia o partículas pesadas), por lo que ante el diagnóstico es recomendable que los pacientes sean tratados en centros con amplia experiencia.
+      </p></td>
+  </tr>
+  <tr>
+    <th> </th>
+    <td> Revisar los "lunares" que nos salen con la regal ABCDE</td>
+    <td> </td>
+  </tr>
+</table>
+<br><br>
+<table>
+  <caption> </caption>
+  <tr>
+    <td> </td>
+    <th> </th>
+    <th> </th>
+  </tr>
+  <br>
+  <tr>
+    <th> </th>
+    <td> </td>
+    <a href="index.html" style="color:#00bcd4;">← Volver al portafolio</a>
+    <div style="position: fixed; bottom: 20px; left: 20px;">
+      <button onclick="startNarration()">🔊 Reproducir</button>
+      <button onclick="togglePause()">⏸ Pausar / Reanudar</button>
+    </div>
+    
+</body>
+</html>

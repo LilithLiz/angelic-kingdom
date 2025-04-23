@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title> </title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      padding: 50px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 1rem;
+      border: none;
+      background-color: #00bcd4;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  
+
+  <div style="position: fixed; bottom: 20px; left: 20px;">
+    <button onclick="startNarration()">🔊 Reproducir</button>
+    <button onclick="togglePause()">⏸ Pausar / Reanudar</button>
+  </div>
+
+  <script>
+    const synth = window.speechSynthesis;
+    let utterance;
+    let vozSeleccionada = null;
+
+    function getTextContent() {
+      const tags = document.body.querySelectorAll('h1, h2, h3, p');
+      return Array.from(tags).map(el => el.innerText).join('. ');
+    }
+
+    function startNarration() {
+      if (!vozSeleccionada) {
+        console.warn("Voz aún no cargada.");
+        return;
+      }
+
+      if (synth.speaking) {
+        synth.cancel();
+      }
+
+      const texto = getTextContent();
+      utterance = new SpeechSynthesisUtterance(texto);
+      utterance.voice = vozSeleccionada;
+      utterance.lang = vozSeleccionada.lang;
+      synth.speak(utterance);
+    }
+
+    function togglePause() {
+      if (synth.speaking) {
+        if (synth.paused) {
+          synth.resume();
+        } else {
+          synth.pause();
+        }
+      }
+    }
+
+    function inicializarVoz() {
+      const voces = synth.getVoices();
+      vozSeleccionada = voces.find(v => v.lang.startsWith("es")) || voces[0];
+
+      if (!vozSeleccionada && voces.length === 0) {
+        setTimeout(inicializarVoz, 200);
+      } else {
+        startNarration(); // Iniciar automáticamente al cargar
+      }
+    }
+
+    // Esperar a que las voces estén listas
+    window.speechSynthesis.onvoiceschanged = () => {
+      inicializarVoz();
+    };
+  </script>
+
+</body>
+</html>
+
+</head>
+<body>
+  <h1>Proyecto 2</h1>
+  <p>Esta es una página de detalle para el Proyecto 2.</p>
+
+  <table>
+    <caption> </caption>
+    <tr>
+      <td> </td>
+      <th> </th>
+      <th> </th>
+    </tr>
+    <br>
+    <tr>
+      <th> </th>
+      <td><img src="data:image/jpeg;base64,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" alt="400" height="350"></td>
+      <td> <p><h3> Càncer de estómago</h3></p>
+         <p>El cáncer gástrico es un término general con el que se denomina a cualquier tumor maligno que surge de las células de alguna de las capas del estómago. <p> </p>
+
+
+</td>
+    </tr>
+    <tr>
+      <th> </th>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </table>
+
+  
+        
+
+<table>
+    <caption> </caption>
+    <tr>
+      <td> </td>
+      <th> </th>
+      <th> </th>
+    </tr>
+    <tr>
+      <th> </th>
+      <td><img src="https://i.pinimg.com/474x/93/72/06/937206f0899049ed22af70512d7014ad.jpg" alt="400" height="350"></td>
+      <td> <p><h3>Factores de riesgo</h3></p>
+    </p> <p>Factores nutricionales: Las dietas muy ricas en salazones y ahumados típicas de Japón, Corea y China, bajas en frutas y en verduras frescas, y las concentraciones altas de nitratos en los alimentos contribuyen a la aparición del cáncer gástrico. 
+ 
+        Factores ambientales: La mala preparación de los alimentos, la falta de refrigeración y las aguas en mal estado (que pueden tener altas concentraciones de nitratos o de Helicobacter pylori) también favorecen que se desarrolle este tumor. 
+         
+        Tabaco y alcohol: El tabaco aumenta el riesgo de desarrollar muchos cánceres, incluido el de estómago.
+        </p></td>
+    </tr>
+    <tr>
+      <th> </th>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </table>
+  <br><br>
+  <table>
+    <caption> </caption>
+    <tr>
+      <td> </td>
+      <th> </th>
+      <th> </th>
+    </tr>
+    <br>
+    <tr>
+      <th> </th>
+      <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgg-CyJ55twnH3lqvjfw7dx660vDQ9BorXfg&s" alt="400" height="350"></td>
+      <td> <p><h3>Signos y sìntomas</h3></p>
+         <p>Los pacientes con cáncer gástrico pueden estar asintomáticos o presentar síntomas y signos.
+            Asintomático. El cáncer gástrico puede no producir síntomas hasta fases avanzadas. En los pacientes asintomáticos, el cáncer gástrico se diagnostica al realizar pruebas médicas por otras causas. 
+            <p> </p>
+
+            •	Hematemesis (= vómito con sangre roja) o vómitos con "posos de café".
+            •	Melenas (= heces negras como la hiel) o hematoquecia (= heces con sangre).
+            •	Pérdidas ocultas (microscópicas) de sangre por las heces.
+            </p> 
+
+</td>
+    </tr>
+    <tr>
+      <th> </th>
+      <td ><p>También pueden notarse náuseas y vómitos, sensación de plenitud precoz (sensación de estar lleno después de comer poco) </p> </td>
+      <td> </td>
+    </tr>
+  </table>
+
+
+
+    
+    <script>
+        function showTab(tabId) {
+            var contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+<style>
+    h1 {text-align: center;}
+    p {text-align: center;}
+    </style>
+
+
+  <a href="index.html" style="color:#00bcd4;">← Volver al portafolio</a>
+</body>
+</html>
